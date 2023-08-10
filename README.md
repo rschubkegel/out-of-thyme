@@ -1,3 +1,5 @@
+![](./banner.png)
+
 # Out of Thyme
 
 An arcade game made over a weekend for Mini Jame Gam #20.
