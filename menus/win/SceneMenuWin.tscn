@@ -1,0 +1,242 @@
+[gd_scene load_steps=10 format=3 uid="uid://bem5fcqgitw2u"]
+
+[ext_resource type="Theme" uid="uid://dwdrlg1gqag5x" path="res://menus/Theme.tres" id="1_cy6y6"]
+[ext_resource type="Texture2D" uid="uid://bg0cmh2p0txha" path="res://menus/win/win-face-1.png" id="2_5vhyo"]
+[ext_resource type="Script" path="res://menus/win/script.gd" id="2_byga7"]
+[ext_resource type="Texture2D" uid="uid://dknqnp05xm7sj" path="res://menus/win/win-face-2.png" id="3_c7xqj"]
+[ext_resource type="Texture2D" uid="uid://miyvlpxjhngm" path="res://menus/win/win-thyme-1.png" id="4_e7get"]
+[ext_resource type="Texture2D" uid="uid://b6ewie0jvobw1" path="res://menus/win/win-thyme-2.png" id="5_ji26k"]
+
+[sub_resource type="Animation" id="Animation_0xryp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Face1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Face2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Thyme1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Thyme2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_n2cc8"]
+resource_name = "jiggle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Face1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Face2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Thyme1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Thyme2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fi86m"]
+_data = {
+"RESET": SubResource("Animation_0xryp"),
+"jiggle": SubResource("Animation_n2cc8")
+}
+
+[node name="SceneMenuWin" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_cy6y6")
+script = ExtResource("2_byga7")
+
+[node name="Face1" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_5vhyo")
+centered = false
+
+[node name="Face2" type="Sprite2D" parent="."]
+texture = ExtResource("3_c7xqj")
+centered = false
+
+[node name="Thyme1" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_e7get")
+centered = false
+
+[node name="Thyme2" type="Sprite2D" parent="."]
+texture = ExtResource("5_ji26k")
+centered = false
+
+[node name="AnimationPlayerImages" type="AnimationPlayer" parent="."]
+autoplay = "jiggle"
+libraries = {
+"": SubResource("AnimationLibrary_fi86m")
+}
+
+[node name="LabelWin" type="Label" parent="."]
+layout_mode = 0
+offset_left = 499.0
+offset_top = 84.0
+offset_right = 1213.0
+offset_bottom = 303.0
+rotation = 0.0611845
+scale = Vector2(1.11431, 1.21978)
+theme_override_font_sizes/font_size = 180
+text = "You Win!!"
+
+[node name="LabelScoreBase" type="Label" parent="."]
+layout_mode = 0
+offset_left = 621.181
+offset_top = 437.846
+offset_right = 1156.18
+offset_bottom = 517.846
+rotation = -0.0258829
+theme_override_colors/font_color = Color(0.278431, 0.176471, 0.188235, 1)
+text = "Base score: 1000"
+
+[node name="LabelScoreTime" type="Label" parent="."]
+layout_mode = 0
+offset_left = 431.181
+offset_top = 522.846
+offset_right = 1191.18
+offset_bottom = 602.846
+rotation = 0.0522891
+theme_override_colors/font_color = Color(0.278431, 0.176471, 0.188235, 1)
+text = "Time bonus: 5 x 200 = 1000"
+
+[node name="LabelScoreThyme" type="Label" parent="."]
+layout_mode = 0
+offset_left = 472.181
+offset_top = 672.846
+offset_right = 1244.18
+offset_bottom = 752.846
+rotation = -0.0323258
+theme_override_colors/font_color = Color(0.278431, 0.176471, 0.188235, 1)
+text = "Thyme bonus: 3 * 200 = 600"
+horizontal_alignment = 1
+
+[node name="LabelAddition" type="Label" parent="."]
+layout_mode = 0
+offset_left = 598.181
+offset_top = 786.846
+offset_right = 1256.18
+offset_bottom = 898.846
+rotation = 0.0749764
+theme_override_colors/font_color = Color(0.368627, 0.290196, 0.270588, 1)
+theme_override_font_sizes/font_size = 36
+text = "1000 + 1000 + 600 ="
+
+[node name="LabelScoreTotal" type="Label" parent="."]
+layout_mode = 0
+offset_left = 528.181
+offset_top = 852.846
+offset_right = 1186.18
+offset_bottom = 964.846
+rotation = -0.0668867
+theme_override_colors/font_color = Color(0.08, 0.0744, 0.0704, 1)
+theme_override_font_sizes/font_size = 90
+text = "Total score: 1200"
+
+[node name="ButtonReplay" type="Button" parent="."]
+layout_mode = 0
+offset_left = 279.0
+offset_top = 981.0
+offset_right = 612.0
+offset_bottom = 1117.0
+rotation = 0.183435
+focus_neighbor_bottom = NodePath("../ButtonMain")
+focus_next = NodePath("../ButtonMain")
+theme_override_font_sizes/font_size = 100
+text = "Replay"
+
+[node name="ButtonMain" type="Button" parent="."]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 1225.0
+offset_right = 474.0
+offset_bottom = 1318.0
+rotation = -0.120989
+focus_neighbor_top = NodePath("../ButtonReplay")
+focus_previous = NodePath("../ButtonReplay")
+text = "Main Menu"
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = -1
+position = Vector2(-10, -52)
+points = PackedVector2Array(982, 927, 1215, 919)
+width = 90.0
+default_color = Color(0.733333, 0.901961, 0.305882, 1)

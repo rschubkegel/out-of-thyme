@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://tbsktxwndal4"
+path="res://.godot/imported/organ - Marker #6.wav-24e758a8918464ab0a03807a192eb96a.sample"
+
+[deps]
+
+source_file="res://sfx/organ - Marker #6.wav"
+dest_files=["res://.godot/imported/organ - Marker #6.wav-24e758a8918464ab0a03807a192eb96a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://cp3r4q5p1yqok"]
+
+[ext_resource type="Texture2D" uid="uid://bpbaha6abix1f" path="res://objects/train/thyme/pots.png" id="1_seimm"]
+[ext_resource type="Script" path="res://objects/train/thyme/pot/script.gd" id="1_xwnbg"]
+[ext_resource type="Texture2D" uid="uid://21805bc1gpdh" path="res://objects/train/thyme/thyme.png" id="2_403oc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_771ly"]
+size = Vector2(30, 27)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5rii0"]
+radius = 21.0
+
+[node name="Pot" type="Area2D" groups=["pot"]]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_xwnbg")
+
+[node name="Pot" type="Sprite2D" parent="."]
+position = Vector2(0, -28)
+scale = Vector2(0.377858, 0.377858)
+texture = ExtResource("1_seimm")
+hframes = 4
+frame = 2
+
+[node name="Thyme" type="Sprite2D" parent="Pot"]
+z_index = -1
+position = Vector2(-2.6465, -29.1115)
+texture = ExtResource("2_403oc")
+offset = Vector2(2.6465, -58.2229)
+hframes = 4
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-1, -14)
+shape = SubResource("RectangleShape2D_771ly")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-1, -37)
+shape = SubResource("CircleShape2D_5rii0")
+
+[connection signal="body_entered" from="." to="." method="on_body_entered"]

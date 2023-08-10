@@ -1,0 +1,369 @@
+[gd_scene load_steps=18 format=3 uid="uid://h12rj3sp5d05"]
+
+[ext_resource type="Script" path="res://objects/bird/script.gd" id="1_01mp4"]
+[ext_resource type="Texture2D" uid="uid://dolbo7e5n8x7s" path="res://objects/bird/body.png" id="1_72prb"]
+[ext_resource type="AudioStream" uid="uid://b4xfrojaefpbs" path="res://sfx/crow1.wav" id="2_fpkvw"]
+[ext_resource type="Texture2D" uid="uid://d4fxxkq6vxmar" path="res://objects/bird/eye.png" id="2_np5rf"]
+[ext_resource type="PackedScene" uid="uid://bud4os0qia5h7" path="res://objects/thyme/Thyme.tscn" id="3_byftx"]
+[ext_resource type="AudioStream" uid="uid://db8s11aybc28f" path="res://sfx/crow2.wav" id="3_s24q3"]
+[ext_resource type="Texture2D" uid="uid://dwvqjoudiangn" path="res://objects/bird/feather-down.png" id="3_v1ydh"]
+[ext_resource type="AudioStream" uid="uid://bw1m3b0qi8ojj" path="res://sfx/crow3.wav" id="4_2i7ii"]
+[ext_resource type="Texture2D" uid="uid://du4d3qno3smna" path="res://objects/bird/feather-up.png" id="4_bjf7o"]
+[ext_resource type="AudioStream" uid="uid://kum837ql0beb" path="res://sfx/whoosh-6316.mp3" id="5_0l0uq"]
+[ext_resource type="Texture2D" uid="uid://dxybx74dndcsd" path="res://objects/bird/tail.png" id="5_n4h5f"]
+[ext_resource type="AudioStream" uid="uid://dy0xlywimtee2" path="res://sfx/flap1.wav" id="12_xsk1p"]
+[ext_resource type="AudioStream" uid="uid://bt5waawf0rdiv" path="res://sfx/flap2.wav" id="13_wcfg7"]
+
+[sub_resource type="Animation" id="Animation_21sor"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/FeatherDown:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/FeatherDown:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/FeatherDown:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/FeatherUp:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/FeatherUp:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body/Thyme/Sprite3:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Body/Thyme/Sprite1:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Body/Thyme/Sprite2:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.261799]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Body/Thyme/Sprite4:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.261799]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Body/Thyme/Sprite5:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_kg0ws"]
+resource_name = "fly"
+length = 0.8
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.05, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 11), Vector2(0, -25), Vector2(0, -16.9074)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/FeatherDown:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/FeatherDown:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.261799, 0.0, -0.261799]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Body/FeatherDown:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.15, 0.25, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.11771, 0.679903), Vector2(1, 1), Vector2(0.882194, 1.10559), Vector2(1.11771, 0.679903)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body/FeatherUp:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Body/FeatherUp:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.4, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.12711, 0.607931), Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Body/Thyme/Sprite3:rotation")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.899857, -0.791588]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Body/Thyme/Sprite1:rotation")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.785397, -0.26799]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Body/Thyme/Sprite2:rotation")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.261799, 0.785397, -0.791588]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Body/Thyme/Sprite4:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.05, 0.2, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.261799, 0.523598, -1.0472]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Body/Thyme/Sprite5:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.571393, -1.21671]
+}
+tracks/11/type = "audio"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("FlapStreamPlayer")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_xsk1p")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_wcfg7")
+}],
+"times": PackedFloat32Array(0.0829239, 0.429488)
+}
+tracks/11/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_revnu"]
+_data = {
+"RESET": SubResource("Animation_21sor"),
+"fly": SubResource("Animation_kg0ws")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mubpm"]
+radius = 37.1214
+
+[node name="Bird" type="CharacterBody2D" groups=["bird"]]
+collision_layer = 12
+collision_mask = 12
+script = ExtResource("1_01mp4")
+hit_sounds = Array[AudioStream]([ExtResource("2_fpkvw"), ExtResource("3_s24q3"), ExtResource("4_2i7ii")])
+whoosh_sounds = Array[AudioStream]([ExtResource("5_0l0uq")])
+
+[node name="Body" type="Sprite2D" parent="."]
+position = Vector2(0, 11)
+texture = ExtResource("1_72prb")
+
+[node name="Thyme" parent="Body" instance=ExtResource("3_byftx")]
+visible = false
+position = Vector2(41, 13.7992)
+rotation = 2.09439
+
+[node name="Eye" type="Sprite2D" parent="Body"]
+position = Vector2(-13, -6)
+texture = ExtResource("2_np5rf")
+
+[node name="FeatherDown" type="Sprite2D" parent="Body"]
+position = Vector2(-9, 0)
+texture = ExtResource("3_v1ydh")
+offset = Vector2(17, 30)
+
+[node name="FeatherUp" type="Sprite2D" parent="Body"]
+visible = false
+position = Vector2(-5, -6)
+texture = ExtResource("4_bjf7o")
+offset = Vector2(25, -36)
+
+[node name="Tail" type="Sprite2D" parent="Body"]
+position = Vector2(36, -14)
+texture = ExtResource("5_n4h5f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "fly"
+libraries = {
+"": SubResource("AnimationLibrary_revnu")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_mubpm")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
+[node name="FlapStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = -24.0
+bus = &"SFX"

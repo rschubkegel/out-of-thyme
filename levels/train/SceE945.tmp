@@ -1,0 +1,130 @@
+[gd_scene load_steps=12 format=3 uid="uid://c7b4pmrxtedh0"]
+
+[ext_resource type="Script" path="res://levels/train/script.gd" id="1_pmq7b"]
+[ext_resource type="Script" path="res://objects/sun/script.gd" id="2_gc2rc"]
+[ext_resource type="Texture2D" uid="uid://ck4gnsunab2jl" path="res://objects/ground/sprite.png" id="3_abyyj"]
+[ext_resource type="PackedScene" uid="uid://601iq6q8aw0y" path="res://objects/conductor/Conductor.tscn" id="5_p4u5a"]
+[ext_resource type="PackedScene" uid="uid://b4c3sggqiljku" path="res://objects/train/engine/EngineCar.tscn" id="5_vikvb"]
+[ext_resource type="PackedScene" uid="uid://cwh5jbbel862j" path="res://objects/train/thyme/ThymeCar.tscn" id="6_fcglq"]
+[ext_resource type="Script" path="res://objects/bird/spawner.gd" id="6_fs4xr"]
+[ext_resource type="PackedScene" uid="uid://dq8qd65xhrwft" path="res://objects/train/organ/OrganCar.tscn" id="7_bphpk"]
+
+[sub_resource type="Animation" id="Animation_b1ma8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2292, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_71ord"]
+resource_name = "scroll"
+length = 3.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2292, 0), Vector2(-4391, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b2l2d"]
+_data = {
+"RESET": SubResource("Animation_b1ma8"),
+"scroll": SubResource("Animation_71ord")
+}
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_pmq7b")
+
+[node name="Sky" type="ColorRect" parent="."]
+z_index = -100
+z_as_relative = false
+offset_right = 2563.0
+offset_bottom = 1442.0
+color = Color(0.996094, 0.878906, 0.65625, 1)
+
+[node name="Sun" type="Node2D" parent="."]
+position = Vector2(640, -125)
+script = ExtResource("2_gc2rc")
+sun_color = Color(1, 0.960784, 0.882353, 1)
+sky_end_color = Color(0.0588235, 0, 0.027451, 1)
+sun_target_y = 1250
+
+[node name="Ground" type="Node2D" parent="."]
+position = Vector2(2329, 1337)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+position = Vector2(2292, 0)
+texture = ExtResource("3_abyyj")
+
+[node name="Line2D" type="Line2D" parent="Ground"]
+position = Vector2(-2329, -191)
+points = PackedVector2Array(0, 0, 2560, 0)
+width = 40.0
+default_color = Color(0.52549, 0.52549, 0.52549, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ground" groups=["train_speed_animators"]]
+autoplay = "scroll"
+libraries = {
+"": SubResource("AnimationLibrary_b2l2d")
+}
+
+[node name="EngineCar" parent="." instance=ExtResource("5_vikvb")]
+position = Vector2(2075, 949)
+
+[node name="OrganCar" parent="." instance=ExtResource("7_bphpk")]
+position = Vector2(1245, 859)
+
+[node name="ThymeCar" parent="." instance=ExtResource("6_fcglq")]
+position = Vector2(435, 926)
+
+[node name="Conductor" parent="." instance=ExtResource("5_p4u5a")]
+position = Vector2(1933, 974)
+organ_car = NodePath("../OrganCar")
+
+[node name="BirdSpawner" type="Node" parent="."]
+script = ExtResource("6_fs4xr")
+level = NodePath("..")
+
+[node name="StartingPositions" type="Node" parent="BirdSpawner"]
+
+[node name="Node2D1" type="Node2D" parent="BirdSpawner/StartingPositions"]
+position = Vector2(2632, 117)
+
+[node name="Node2D2" type="Node2D" parent="BirdSpawner/StartingPositions"]
+position = Vector2(2686, 153)
+
+[node name="Node2D3" type="Node2D" parent="BirdSpawner/StartingPositions"]
+position = Vector2(2630, 236)
+
+[node name="Node2D4" type="Node2D" parent="BirdSpawner/StartingPositions"]
+position = Vector2(2673, 301)
+
+[node name="Node2D5" type="Node2D" parent="BirdSpawner/StartingPositions"]
+position = Vector2(2637, 393)
+
+[node name="Node2D6" type="Node2D" parent="BirdSpawner/StartingPositions"]
+position = Vector2(2695, 463)
+
+[node name="Timer" type="Timer" parent="BirdSpawner"]
+
+[connection signal="engine_entered" from="EngineCar" to="." method="on_engine_entered"]
+[connection signal="engine_exited" from="EngineCar" to="." method="on_engine_exited"]
+[connection signal="seat_entered" from="OrganCar" to="Conductor" method="set_available_organ_seat"]
+[connection signal="seat_exited" from="OrganCar" to="Conductor" method="remove_available_organ_seat"]
+[connection signal="fell_off_train" from="Conductor" to="." method="lose"]
+[connection signal="timeout" from="BirdSpawner/Timer" to="BirdSpawner" method="spawn_bird"]

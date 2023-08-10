@@ -1,0 +1,119 @@
+[gd_scene load_steps=9 format=3 uid="uid://cwh5jbbel862j"]
+
+[ext_resource type="Texture2D" uid="uid://cfqoy57jihn2a" path="res://objects/train/thyme/car.png" id="1_2ewl3"]
+[ext_resource type="PackedScene" uid="uid://cp3r4q5p1yqok" path="res://objects/train/thyme/pot/Pot.tscn" id="2_3lk0s"]
+[ext_resource type="PackedScene" uid="uid://pc46gaqgra62" path="res://objects/train/wheel/Wheel.tscn" id="3_bry3y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ie5wg"]
+size = Vector2(714, 231)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g0clt"]
+size = Vector2(758, 88)
+
+[sub_resource type="Animation" id="Animation_dxxki"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sp50k"]
+resource_name = "rumble"
+length = 0.1
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2, 2.98023e-08), Vector2(-1, 1), Vector2(-1, 3), Vector2(-2, 1), Vector2(-1, 5), Vector2(1, 1), Vector2(2, 2), Vector2(0, 2), Vector2(0, -1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kptt5"]
+_data = {
+"RESET": SubResource("Animation_dxxki"),
+"rumble": SubResource("Animation_sp50k")
+}
+
+[node name="ThymeCar" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.79473, 0.79473)
+texture = ExtResource("1_2ewl3")
+
+[node name="Pots" type="Node2D" parent="Sprite2D"]
+z_index = -1
+position = Vector2(0.294006, 0)
+scale = Vector2(1.25829, 1.25829)
+
+[node name="Pot1" parent="Sprite2D/Pots" instance=ExtResource("2_3lk0s")]
+position = Vector2(-273.233, 59)
+
+[node name="Pot2" parent="Sprite2D/Pots" instance=ExtResource("2_3lk0s")]
+position = Vector2(-216.233, 59)
+
+[node name="Pot3" parent="Sprite2D/Pots" instance=ExtResource("2_3lk0s")]
+position = Vector2(-120.233, 59)
+
+[node name="Pot4" parent="Sprite2D/Pots" instance=ExtResource("2_3lk0s")]
+position = Vector2(-59.2336, 60)
+
+[node name="Pot5" parent="Sprite2D/Pots" instance=ExtResource("2_3lk0s")]
+position = Vector2(45.7669, 59)
+
+[node name="Pot6" parent="Sprite2D/Pots" instance=ExtResource("2_3lk0s")]
+position = Vector2(98.7668, 59)
+
+[node name="Pot7" parent="Sprite2D/Pots" instance=ExtResource("2_3lk0s")]
+position = Vector2(211.767, 60)
+
+[node name="Pot8" parent="Sprite2D/Pots" instance=ExtResource("2_3lk0s")]
+position = Vector2(265.766, 59)
+
+[node name="Wheels" type="Node2D" parent="Sprite2D"]
+position = Vector2(0.294006, 0)
+scale = Vector2(1.25829, 1.25829)
+
+[node name="Wheel1" parent="Sprite2D/Wheels" instance=ExtResource("3_bry3y")]
+position = Vector2(-263, 161)
+
+[node name="Wheel2" parent="Sprite2D/Wheels" instance=ExtResource("3_bry3y")]
+position = Vector2(-128, 161)
+
+[node name="Wheel3" parent="Sprite2D/Wheels" instance=ExtResource("3_bry3y")]
+position = Vector2(131, 161)
+
+[node name="Wheel4" parent="Sprite2D/Wheels" instance=ExtResource("3_bry3y")]
+position = Vector2(266, 161)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(2, 42)
+shape = SubResource("RectangleShape2D_ie5wg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-1, -115)
+shape = SubResource("RectangleShape2D_g0clt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["train_speed_animators"]]
+autoplay = "rumble"
+libraries = {
+"": SubResource("AnimationLibrary_kptt5")
+}

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c5kklyveg17dk"
+path="res://.godot/imported/guy - Marker #8.wav-1eac437c1b1cdf22f2926394fb8b49bb.sample"
+
+[deps]
+
+source_file="res://sfx/guy - Marker #8.wav"
+dest_files=["res://.godot/imported/guy - Marker #8.wav-1eac437c1b1cdf22f2926394fb8b49bb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,236 @@
+[gd_scene load_steps=7 format=3 uid="uid://dedhybjrw6x5i"]
+
+[ext_resource type="Theme" uid="uid://dwdrlg1gqag5x" path="res://menus/Theme.tres" id="1_0ms67"]
+[ext_resource type="Script" path="res://menus/main/script.gd" id="2_sceiu"]
+[ext_resource type="Texture2D" uid="uid://voo54n0n7b8e" path="res://menus/mute.png" id="4_4ne0e"]
+[ext_resource type="Texture2D" uid="uid://dpbqtwgj1f76g" path="res://menus/unmute.png" id="5_2mr8i"]
+[ext_resource type="Texture2D" uid="uid://ccq83tkohdj33" path="res://menus/main/background.png" id="5_48jfr"]
+[ext_resource type="Texture2D" uid="uid://l5mga8led5g1" path="res://menus/arrows.png" id="6_rp6af"]
+
+[node name="SceneMenuMain" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_0ms67")
+script = ExtResource("2_sceiu")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.466667)
+z_index = -10
+position = Vector2(1291, 728)
+scale = Vector2(1.02606, 1.02606)
+texture = ExtResource("5_48jfr")
+
+[node name="Label1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 337.0
+offset_top = 669.0
+offset_right = 868.0
+offset_bottom = 716.0
+rotation = 0.0128229
+theme_override_colors/font_color = Color(0.278431, 0.176471, 0.188235, 1)
+theme_override_font_sizes/font_size = 36
+text = "Use A/D or Left/Right to move"
+horizontal_alignment = 1
+
+[node name="Line2D1" type="Line2D" parent="."]
+position = Vector2(-480, 59)
+points = PackedVector2Array(1231, 659, 1316, 660)
+width = 5.0
+default_color = Color(0.831373, 0.360784, 0.32549, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 758.0
+offset_right = 857.0
+offset_bottom = 805.0
+rotation = -0.0657379
+theme_override_colors/font_color = Color(0.277344, 0.175781, 0.1875, 1)
+theme_override_font_sizes/font_size = 36
+text = "Use W, Up, or Space to jump"
+horizontal_alignment = 1
+
+[node name="Line2D2" type="Line2D" parent="."]
+position = Vector2(-485, 68)
+points = PackedVector2Array(1211, 709, 1300, 704)
+width = 5.0
+default_color = Color(0.831373, 0.360784, 0.32549, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="Line2D2"]
+position = Vector2(-507, 126)
+points = PackedVector2Array(1643, 664, 1883, 666)
+width = 5.0
+default_color = Color(0.831373, 0.360784, 0.32549, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 345.0
+offset_top = 817.0
+offset_right = 876.0
+offset_bottom = 864.0
+rotation = -0.0161837
+theme_override_colors/font_color = Color(0.277344, 0.175781, 0.1875, 1)
+theme_override_font_sizes/font_size = 36
+text = "Use JKL; or ZXCV to play the organ"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 954.0
+offset_right = 857.0
+offset_bottom = 1048.0
+rotation = -0.169545
+theme_override_colors/font_color = Color(0.367188, 0.289063, 0.269531, 1)
+theme_override_font_sizes/font_size = 30
+text = "(stay at the engine to
+keep the train moving)"
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1122.0
+offset_top = 682.0
+offset_right = 1392.0
+offset_bottom = 842.0
+rotation = -0.0887239
+theme_override_font_sizes/font_size = 120
+text = "Play"
+
+[node name="ExitButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1206.0
+offset_top = 917.0
+offset_right = 1372.0
+offset_bottom = 1010.0
+rotation = 0.144613
+text = "Exit"
+
+[node name="HighScoresLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1751.0
+offset_top = 604.582
+offset_right = 2244.0
+offset_bottom = 694.582
+rotation = -0.0844451
+theme_override_colors/font_color = Color(0.368627, 0.290196, 0.270588, 1)
+theme_override_font_sizes/font_size = 72
+text = "High Scores
+"
+
+[node name="ScoresContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1794.0
+offset_top = 739.0
+offset_right = 2287.0
+offset_bottom = 1526.0
+rotation = 0.0589688
+
+[node name="Placeholder" type="Label" parent="ScoresContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.277344, 0.175781, 0.1875, 1)
+theme_override_font_sizes/font_size = 48
+text = "No high scores yet"
+
+[node name="MuteButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 2379.0
+offset_top = 1279.0
+offset_right = 2483.0
+offset_bottom = 1372.0
+rotation = 0.107012
+text = "    "
+
+[node name="Mute" type="TextureRect" parent="MuteButton"]
+visible = false
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(0.484699, 0.484699)
+texture = ExtResource("4_4ne0e")
+
+[node name="Unmute" type="TextureRect" parent="MuteButton"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 200.0
+scale = Vector2(0.484699, 0.484699)
+texture = ExtResource("5_2mr8i")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 606.0
+offset_top = 134.0
+offset_right = 2006.0
+offset_bottom = 425.0
+rotation = 0.0588136
+theme_override_colors/font_color = Color(0.14902, 0.117647, 0.121569, 1)
+theme_override_font_sizes/font_size = 240
+text = "Out of Thyme"
+
+[node name="Reset" type="Button" parent="."]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 72.0
+offset_right = 316.0
+offset_bottom = 127.0
+rotation = -0.210172
+scale = Vector2(0.752101, 0.752101)
+theme_override_font_sizes/font_size = 32
+text = "DON'T PRESS ME"
+
+[node name="Arrows" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.768627)
+position = Vector2(208, 115)
+scale = Vector2(0.314971, 0.314971)
+texture = ExtResource("6_rp6af")
+hframes = 3
+
+[node name="ResetLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 134.0
+offset_right = 303.0
+offset_bottom = 211.0
+rotation = 0.0994917
+theme_override_colors/font_color = Color(0.367188, 0.289063, 0.269531, 1)
+theme_override_font_sizes/font_size = 18
+text = "(resets high scores)"
+
+[node name="Credits1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 1241.0
+offset_right = 421.0
+offset_bottom = 1318.0
+rotation = -0.121275
+theme_override_colors/font_color = Color(0.367188, 0.289063, 0.269531, 1)
+theme_override_font_sizes/font_size = 18
+text = "Made in like 2.5 days by Rylan Schubkegel
+for Mini Jame Gam #20"
+horizontal_alignment = 1
+
+[node name="Credits2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 1296.0
+offset_right = 459.0
+offset_bottom = 1374.0
+rotation = 0.115454
+theme_override_colors/font_color = Color(0.690196, 0.517647, 0.427451, 1)
+theme_override_font_sizes/font_size = 16
+text = "Everything is made by yours truly except for:
+- the font (Itim) from fonts.google.com
+- the music & various sfx from pixabay.com"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="MuteButton" to="." method="toggle_mute"]
+[connection signal="pressed" from="Reset" to="." method="reset_scores"]

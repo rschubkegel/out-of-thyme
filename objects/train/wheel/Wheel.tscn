@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://pc46gaqgra62"]
+
+[ext_resource type="Script" path="res://objects/train/wheel/script.gd" id="1_d71pe"]
+[ext_resource type="Texture2D" uid="uid://bynhmrv5e4t8c" path="res://objects/train/wheel/wheel.png" id="1_kvnin"]
+
+[sub_resource type="Animation" id="Animation_lyo1q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.14159]
+}
+
+[sub_resource type="Animation" id="Animation_fqysd"]
+resource_name = "spin"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 3.14159, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wm4dd"]
+_data = {
+"RESET": SubResource("Animation_lyo1q"),
+"spin": SubResource("Animation_fqysd")
+}
+
+[node name="Wheel" type="Node2D"]
+script = ExtResource("1_d71pe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(0.462075, 0.462075)
+texture = ExtResource("1_kvnin")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["train_speed_animators"]]
+autoplay = "spin"
+libraries = {
+"": SubResource("AnimationLibrary_wm4dd")
+}

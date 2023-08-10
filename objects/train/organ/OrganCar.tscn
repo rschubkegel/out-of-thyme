@@ -1,0 +1,469 @@
+[gd_scene load_steps=12 format=3 uid="uid://dq8qd65xhrwft"]
+
+[ext_resource type="Texture2D" uid="uid://bgguaycoxqu4s" path="res://objects/train/organ/sprite.png" id="1_pkrqd"]
+[ext_resource type="Script" path="res://objects/train/organ/script.gd" id="1_ymuo2"]
+[ext_resource type="Texture2D" uid="uid://cqk62gee7ty1i" path="res://objects/train/organ/bench.png" id="2_w5vp0"]
+[ext_resource type="PackedScene" uid="uid://c86ko2mcc0yvl" path="res://objects/train/organ/pipe/Pipe.tscn" id="4_o8tdq"]
+[ext_resource type="Texture2D" uid="uid://cvj4d68a2gmkc" path="res://objects/train/organ/organ.png" id="5_6yulg"]
+[ext_resource type="PackedScene" uid="uid://pc46gaqgra62" path="res://objects/train/wheel/Wheel.tscn" id="6_3kpi4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cg06q"]
+size = Vector2(310, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jshy"]
+size = Vector2(730, 70)
+
+[sub_resource type="Animation" id="Animation_tsjm0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Car:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7nvdn"]
+resource_name = "rumble"
+length = 0.1
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Car:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1, -1), Vector2(0, 1), Vector2(0, 0), Vector2(2, 0), Vector2(-1, 2), Vector2(-2, 1), Vector2(-1, 0), Vector2(0, 1), Vector2(0, 2), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ba2ls"]
+_data = {
+"RESET": SubResource("Animation_tsjm0"),
+"rumble": SubResource("Animation_7nvdn")
+}
+
+[node name="OrganCar" type="StaticBody2D"]
+position = Vector2(2, 0)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_ymuo2")
+
+[node name="Car" type="Node2D" parent="."]
+
+[node name="Car" type="Sprite2D" parent="Car"]
+z_index = 5
+scale = Vector2(0.5963, 0.5963)
+texture = ExtResource("1_pkrqd")
+
+[node name="Seat" type="Node2D" parent="Car"]
+z_index = 1
+position = Vector2(7, 127)
+
+[node name="Area2D" type="Area2D" parent="Car/Seat"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Car/Seat/Area2D"]
+visible = false
+position = Vector2(0, -27)
+shape = SubResource("RectangleShape2D_cg06q")
+
+[node name="Sprite2D" type="Sprite2D" parent="Car/Seat"]
+position = Vector2(0, -4)
+scale = Vector2(0.498191, 0.498191)
+texture = ExtResource("2_w5vp0")
+
+[node name="Pipes" type="Node2D" parent="Car"]
+
+[node name="CenterPipes2" type="Node2D" parent="Car"]
+
+[node name="Pipe10" parent="Car/CenterPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(144, 139)
+color = Color(0.247059, 0.247059, 0.247059, 1)
+size = 25
+
+[node name="Pipe11" parent="Car/CenterPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(110, 139)
+color = Color(0.247059, 0.247059, 0.247059, 1)
+size = 26
+
+[node name="Pipe12" parent="Car/CenterPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(73, 139)
+color = Color(0.247059, 0.247059, 0.247059, 1)
+size = 27
+
+[node name="Pipe13" parent="Car/CenterPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(37, 139)
+color = Color(0.247059, 0.247059, 0.247059, 1)
+size = 28
+
+[node name="Pipe14" parent="Car/CenterPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(-2, 139)
+color = Color(0.247059, 0.247059, 0.247059, 1)
+size = 29
+
+[node name="Pipe15" parent="Car/CenterPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(-40, 139)
+color = Color(0.247059, 0.247059, 0.247059, 1)
+size = 30
+
+[node name="Pipe16" parent="Car/CenterPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(-81, 139)
+color = Color(0.247059, 0.247059, 0.247059, 1)
+size = 31
+
+[node name="Pipe17" parent="Car/CenterPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(-122, 139)
+color = Color(0.247059, 0.247059, 0.247059, 1)
+size = 32
+
+[node name="CenterPipes1" type="Node2D" parent="Car"]
+position = Vector2(4, 0)
+
+[node name="Pipe" parent="Car/CenterPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(-123, 139)
+color = Color(0.324219, 0.324219, 0.324219, 1)
+size = 20
+
+[node name="Pipe2" parent="Car/CenterPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(-98, 139)
+color = Color(0.324219, 0.324219, 0.324219, 1)
+size = 21
+
+[node name="Pipe3" parent="Car/CenterPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(-70, 139)
+color = Color(0.324219, 0.324219, 0.324219, 1)
+size = 22
+
+[node name="Pipe4" parent="Car/CenterPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(-42, 139)
+color = Color(0.324219, 0.324219, 0.324219, 1)
+size = 23
+
+[node name="Pipe5" parent="Car/CenterPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(-13, 139)
+color = Color(0.324219, 0.324219, 0.324219, 1)
+size = 24
+
+[node name="Pipe6" parent="Car/CenterPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(18, 139)
+color = Color(0.324219, 0.324219, 0.324219, 1)
+size = 25
+
+[node name="Pipe7" parent="Car/CenterPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(50, 139)
+color = Color(0.324219, 0.324219, 0.324219, 1)
+size = 26
+
+[node name="Pipe8" parent="Car/CenterPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(85, 139)
+color = Color(0.324219, 0.324219, 0.324219, 1)
+size = 27
+
+[node name="Pipe9" parent="Car/CenterPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(121, 139)
+color = Color(0.324219, 0.324219, 0.324219, 1)
+size = 28
+
+[node name="Organ" type="Sprite2D" parent="Car"]
+position = Vector2(14, 139)
+scale = Vector2(0.64094, 0.64094)
+texture = ExtResource("5_6yulg")
+offset = Vector2(7.80105, -70.2094)
+
+[node name="RightPipes3" type="Node2D" parent="Car"]
+position = Vector2(-6, 0)
+
+[node name="Pipe1" parent="Car/RightPipes3" instance=ExtResource("4_o8tdq")]
+position = Vector2(188, 138)
+color = Color(0.32549, 0.32549, 0.32549, 1)
+size = 22
+
+[node name="Pipe2" parent="Car/RightPipes3" instance=ExtResource("4_o8tdq")]
+position = Vector2(213, 138)
+color = Color(0.32549, 0.32549, 0.32549, 1)
+size = 23
+
+[node name="Pipe3" parent="Car/RightPipes3" instance=ExtResource("4_o8tdq")]
+position = Vector2(239, 138)
+color = Color(0.32549, 0.32549, 0.32549, 1)
+size = 24
+
+[node name="Pipe4" parent="Car/RightPipes3" instance=ExtResource("4_o8tdq")]
+position = Vector2(266, 138)
+color = Color(0.32549, 0.32549, 0.32549, 1)
+size = 25
+
+[node name="Pipe5" parent="Car/RightPipes3" instance=ExtResource("4_o8tdq")]
+position = Vector2(295, 138)
+color = Color(0.32549, 0.32549, 0.32549, 1)
+size = 26
+
+[node name="Pipe6" parent="Car/RightPipes3" instance=ExtResource("4_o8tdq")]
+position = Vector2(325, 138)
+color = Color(0.32549, 0.32549, 0.32549, 1)
+size = 27
+
+[node name="RightPipes2" type="Node2D" parent="Car"]
+position = Vector2(-6, 0)
+
+[node name="Pipe1" parent="Car/RightPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(328, 138)
+color = Color(0.466667, 0.466667, 0.466667, 1)
+size = 15
+
+[node name="Pipe2" parent="Car/RightPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(305, 138)
+color = Color(0.466667, 0.466667, 0.466667, 1)
+size = 16
+
+[node name="Pipe3" parent="Car/RightPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(282, 139)
+color = Color(0.466667, 0.466667, 0.466667, 1)
+size = 17
+
+[node name="Pipe4" parent="Car/RightPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(257, 139)
+color = Color(0.466667, 0.466667, 0.466667, 1)
+size = 18
+
+[node name="Pipe5" parent="Car/RightPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(233, 139)
+color = Color(0.466667, 0.466667, 0.466667, 1)
+size = 19
+
+[node name="Pipe6" parent="Car/RightPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(208, 139)
+color = Color(0.466667, 0.466667, 0.466667, 1)
+size = 20
+
+[node name="Pipe7" parent="Car/RightPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(180, 139)
+color = Color(0.466667, 0.466667, 0.466667, 1)
+size = 21
+
+[node name="RightPipes1" type="Node2D" parent="Car"]
+position = Vector2(-6, 0)
+
+[node name="Pipe1" parent="Car/RightPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(180, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 4
+
+[node name="Pipe2" parent="Car/RightPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(188, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 5
+
+[node name="Pipe3" parent="Car/RightPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(197, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 6
+
+[node name="Pipe4" parent="Car/RightPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(207, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 7
+
+[node name="Pipe5" parent="Car/RightPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(218, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 8
+
+[node name="Pipe6" parent="Car/RightPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(230, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 9
+
+[node name="Pipe7" parent="Car/RightPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(244, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+
+[node name="Pipe8" parent="Car/RightPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(260, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 11
+
+[node name="Pipe9" parent="Car/RightPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(277, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 12
+
+[node name="Pipe10" parent="Car/RightPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(296, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 13
+
+[node name="Pipe11" parent="Car/RightPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(314, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 14
+
+[node name="Pipe12" parent="Car/RightPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(333, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 15
+
+[node name="LeftPipes3" type="Node2D" parent="Car"]
+
+[node name="Pipe1" parent="Car/LeftPipes3" instance=ExtResource("4_o8tdq")]
+position = Vector2(-299, 138)
+color = Color(0.32549, 0.32549, 0.32549, 1)
+size = 22
+
+[node name="Pipe2" parent="Car/LeftPipes3" instance=ExtResource("4_o8tdq")]
+position = Vector2(-274, 138)
+color = Color(0.32549, 0.32549, 0.32549, 1)
+size = 23
+
+[node name="Pipe3" parent="Car/LeftPipes3" instance=ExtResource("4_o8tdq")]
+position = Vector2(-248, 138)
+color = Color(0.32549, 0.32549, 0.32549, 1)
+size = 24
+
+[node name="Pipe4" parent="Car/LeftPipes3" instance=ExtResource("4_o8tdq")]
+position = Vector2(-221, 138)
+color = Color(0.32549, 0.32549, 0.32549, 1)
+size = 25
+
+[node name="Pipe5" parent="Car/LeftPipes3" instance=ExtResource("4_o8tdq")]
+position = Vector2(-192, 138)
+color = Color(0.32549, 0.32549, 0.32549, 1)
+size = 26
+
+[node name="Pipe6" parent="Car/LeftPipes3" instance=ExtResource("4_o8tdq")]
+position = Vector2(-162, 138)
+color = Color(0.32549, 0.32549, 0.32549, 1)
+size = 27
+
+[node name="LeftPipes2" type="Node2D" parent="Car"]
+
+[node name="Pipe1" parent="Car/LeftPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(-162, 138)
+color = Color(0.466667, 0.466667, 0.466667, 1)
+size = 15
+
+[node name="Pipe2" parent="Car/LeftPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(-185, 138)
+color = Color(0.466667, 0.466667, 0.466667, 1)
+size = 16
+
+[node name="Pipe3" parent="Car/LeftPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(-208, 139)
+color = Color(0.466667, 0.466667, 0.466667, 1)
+size = 17
+
+[node name="Pipe4" parent="Car/LeftPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(-233, 139)
+color = Color(0.466667, 0.466667, 0.466667, 1)
+size = 18
+
+[node name="Pipe5" parent="Car/LeftPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(-257, 139)
+color = Color(0.466667, 0.466667, 0.466667, 1)
+size = 19
+
+[node name="Pipe6" parent="Car/LeftPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(-282, 139)
+color = Color(0.466667, 0.466667, 0.466667, 1)
+size = 20
+
+[node name="Pipe7" parent="Car/LeftPipes2" instance=ExtResource("4_o8tdq")]
+position = Vector2(-310, 139)
+color = Color(0.466667, 0.466667, 0.466667, 1)
+size = 21
+
+[node name="LeftPipes1" type="Node2D" parent="Car"]
+
+[node name="Pipe1" parent="Car/LeftPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(-310, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 4
+
+[node name="Pipe2" parent="Car/LeftPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(-302, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 5
+
+[node name="Pipe3" parent="Car/LeftPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(-293, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 6
+
+[node name="Pipe4" parent="Car/LeftPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(-283, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 7
+
+[node name="Pipe5" parent="Car/LeftPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(-272, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 8
+
+[node name="Pipe6" parent="Car/LeftPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(-260, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 9
+
+[node name="Pipe7" parent="Car/LeftPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(-246, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+
+[node name="Pipe8" parent="Car/LeftPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(-230, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 11
+
+[node name="Pipe9" parent="Car/LeftPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(-213, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 12
+
+[node name="Pipe10" parent="Car/LeftPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(-194, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 13
+
+[node name="Pipe11" parent="Car/LeftPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(-176, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 14
+
+[node name="Pipe12" parent="Car/LeftPipes1" instance=ExtResource("4_o8tdq")]
+position = Vector2(-157, 139)
+color = Color(0.709804, 0.709804, 0.709804, 1)
+size = 15
+
+[node name="Wheel1" parent="Car" instance=ExtResource("6_3kpi4")]
+z_index = 6
+position = Vector2(-243, 224)
+
+[node name="Wheel2" parent="Car" instance=ExtResource("6_3kpi4")]
+z_index = 6
+position = Vector2(254, 224)
+
+[node name="BlastAreas" type="Node2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 174)
+shape = SubResource("RectangleShape2D_5jshy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["train_speed_animators"]]
+autoplay = "rumble"
+libraries = {
+"": SubResource("AnimationLibrary_ba2ls")
+}
+
+[connection signal="body_entered" from="Car/Seat/Area2D" to="." method="emit_organ_entered"]
+[connection signal="body_exited" from="Car/Seat/Area2D" to="." method="emit_organ_exited"]

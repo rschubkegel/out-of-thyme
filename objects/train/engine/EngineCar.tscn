@@ -1,0 +1,183 @@
+[gd_scene load_steps=15 format=3 uid="uid://b4c3sggqiljku"]
+
+[ext_resource type="Texture2D" uid="uid://dtdoqdfn1g3ak" path="res://objects/train/engine/sprite.png" id="1_g7fr3"]
+[ext_resource type="Script" path="res://objects/train/engine/script.gd" id="1_j3n52"]
+[ext_resource type="Texture2D" uid="uid://dxky0tqic4wt6" path="res://objects/train/engine/light_cone.png" id="3_5dk84"]
+[ext_resource type="Texture2D" uid="uid://dke6akx0ehi08" path="res://objects/train/engine/bell.png" id="5_ysfab"]
+[ext_resource type="AudioStream" uid="uid://bom4d7xhorjsf" path="res://sfx/bell.wav" id="6_15e6j"]
+[ext_resource type="PackedScene" uid="uid://pc46gaqgra62" path="res://objects/train/wheel/Wheel.tscn" id="6_pkaf3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j0701"]
+size = Vector2(708.5, 93.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44cyh"]
+size = Vector2(737, 257)
+
+[sub_resource type="Animation" id="Animation_p1aek"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fjg45"]
+resource_name = "rumble"
+length = 0.1
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1, -1), Vector2(0, 0), Vector2(-1, -1), Vector2(0, -1), Vector2(-2, 0), Vector2(0, 0), Vector2(-2, 0), Vector2(0, 1), Vector2(1, 2), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fkugq"]
+_data = {
+"RESET": SubResource("Animation_p1aek"),
+"rumble": SubResource("Animation_fjg45")
+}
+
+[sub_resource type="Animation" id="Animation_rwnv2"]
+resource_name = "ring"
+length = 1.5
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/Bell:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(3, 2, 2, 2, 2, 2, 2, 0),
+"points": PackedFloat32Array(0, -0.00181474, 0.0747767, 0.00181474, -0.0747767, -0.37234, -0.0406878, 0.00607304, 0.118893, -0.0177459, 0.394878, -0.0282408, -0.00449367, 0.17724, 0.0282023, -0.121972, -0.0375245, 0.00462823, 0.0979959, -0.0120867, 0.0506947, -0.0338095, -0.00297977, 0.0914266, 0.0080578, -0.0379411, -0.0418668, -0.000470022, 0.102534, 0.00115111, 0.0242191, -0.0395163, 0, 0.109168, 0, 0.00349903, -0.134438, -0.00230223, 0.134438, 0.00230223),
+"times": PackedFloat32Array(0, 0.055652, 0.146389, 0.319999, 0.423809, 0.549414, 0.7, 1)
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BellAudioPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_15e6j")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_chmnk"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/Bell:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3eajh"]
+_data = {
+"RESET": SubResource("Animation_chmnk"),
+"ring": SubResource("Animation_rwnv2")
+}
+
+[node name="EngineCar" type="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_j3n52")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.694517, 0.694517)
+texture = ExtResource("1_g7fr3")
+
+[node name="LightCone" type="Sprite2D" parent="Sprite2D"]
+z_index = -1
+position = Vector2(597.537, -59.0338)
+scale = Vector2(1.54334, 0.998895)
+texture = ExtResource("3_5dk84")
+
+[node name="Post" type="Line2D" parent="Sprite2D"]
+z_index = -1
+points = PackedVector2Array(-31.6767, -247.654, -33.1165, -122.387)
+width = 20.0
+default_color = Color(0.4375, 0.4375, 0.4375, 1)
+
+[node name="Bell" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(-31.3085, -254.853)
+scale = Vector2(0.522027, 0.522027)
+texture = ExtResource("5_ysfab")
+offset = Vector2(7.62939e-06, 49.6473)
+
+[node name="Wheel1" parent="Sprite2D" instance=ExtResource("6_pkaf3")]
+position = Vector2(-453.552, 204.459)
+scale = Vector2(1.43985, 1.43985)
+
+[node name="Wheel2" parent="Sprite2D" instance=ExtResource("6_pkaf3")]
+position = Vector2(-276.451, 204.459)
+scale = Vector2(1.43985, 1.43985)
+
+[node name="Wheel5" parent="Sprite2D" instance=ExtResource("6_pkaf3")]
+position = Vector2(-96.4699, 204.459)
+scale = Vector2(1.43985, 1.43985)
+
+[node name="Wheel3" parent="Sprite2D" instance=ExtResource("6_pkaf3")]
+position = Vector2(77.7518, 204.459)
+scale = Vector2(1.43985, 1.43985)
+
+[node name="Wheel4" parent="Sprite2D" instance=ExtResource("6_pkaf3")]
+position = Vector2(347.004, 204.459)
+scale = Vector2(1.43985, 1.43985)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-38.25, 93.25)
+shape = SubResource("RectangleShape2D_j0701")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(-31.5, 14.5)
+shape = SubResource("RectangleShape2D_44cyh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["train_speed_animators"]]
+autoplay = "rumble"
+libraries = {
+"": SubResource("AnimationLibrary_fkugq")
+}
+
+[node name="BellAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3eajh")
+}
+
+[node name="BellAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+pitch_scale = 0.01
+bus = &"SFX"
+
+[connection signal="body_entered" from="Area2D" to="." method="emit_engine_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="emit_engine_exited"]

@@ -1,0 +1,109 @@
+[gd_scene load_steps=28 format=3 uid="uid://c86ko2mcc0yvl"]
+
+[ext_resource type="Script" path="res://objects/train/organ/pipe/script.gd" id="1_w2ttf"]
+[ext_resource type="Texture2D" uid="uid://l6eueciusw1b" path="res://objects/train/organ/pipe/blast0000.png" id="2_24ao3"]
+[ext_resource type="AudioStream" uid="uid://cweg7jdlxs7fk" path="res://sfx/organ - Marker #1.wav" id="2_ln3gf"]
+[ext_resource type="Texture2D" uid="uid://s8y1ce4ddniv" path="res://objects/train/organ/pipe/blast2.png" id="3_4db0e"]
+[ext_resource type="AudioStream" uid="uid://rbv4bgvs7e12" path="res://sfx/organ - Marker #2.wav" id="3_cwutf"]
+[ext_resource type="Texture2D" uid="uid://hy5pxhigpcs7" path="res://objects/train/organ/pipe/blast3.png" id="4_3p5pn"]
+[ext_resource type="AudioStream" uid="uid://d1fslnvgq3bcu" path="res://sfx/organ - Marker #3.wav" id="4_qwfkp"]
+[ext_resource type="AudioStream" uid="uid://2mdrifpftx8r" path="res://sfx/organ - Marker #4.wav" id="5_bpy0e"]
+[ext_resource type="Texture2D" uid="uid://b8sdk8xgmtuee" path="res://objects/train/organ/pipe/blast4.png" id="5_hb460"]
+[ext_resource type="Texture2D" uid="uid://bt5j1hdhm8aln" path="res://objects/train/organ/pipe/blast5.png" id="6_8s6et"]
+[ext_resource type="AudioStream" uid="uid://ch1i2oxgv0p5j" path="res://sfx/organ - Marker #5.wav" id="6_uonrq"]
+[ext_resource type="AudioStream" uid="uid://tbsktxwndal4" path="res://sfx/organ - Marker #6.wav" id="7_53aak"]
+[ext_resource type="Texture2D" uid="uid://bin4ym5l4ih74" path="res://objects/train/organ/pipe/blast6.png" id="7_ytljo"]
+[ext_resource type="Texture2D" uid="uid://dg2kwgb30kq8w" path="res://objects/train/organ/pipe/blast7.png" id="8_n67vi"]
+[ext_resource type="AudioStream" uid="uid://ckgja147mob28" path="res://sfx/organ - Marker #7.wav" id="8_rftav"]
+[ext_resource type="Texture2D" uid="uid://ckqcnkwax5dj3" path="res://objects/train/organ/pipe/blast8.png" id="9_uccwl"]
+[ext_resource type="Texture2D" uid="uid://bacob0hc6mxof" path="res://objects/train/organ/pipe/blast9.png" id="10_c0i0n"]
+[ext_resource type="Texture2D" uid="uid://b755aecfg4wng" path="res://objects/train/organ/pipe/blast10.png" id="11_2rkdo"]
+[ext_resource type="Texture2D" uid="uid://btbgrqc0johvm" path="res://objects/train/organ/pipe/blast11.png" id="12_egquc"]
+[ext_resource type="Texture2D" uid="uid://sorvdtrbtg5w" path="res://objects/train/organ/pipe/blast12.png" id="13_f5hnl"]
+[ext_resource type="Texture2D" uid="uid://d0lvlgkylok8v" path="res://objects/train/organ/pipe/blast13.png" id="14_48eg4"]
+[ext_resource type="Texture2D" uid="uid://bpcemno08wacf" path="res://objects/train/organ/pipe/blast14.png" id="15_55fd0"]
+[ext_resource type="Texture2D" uid="uid://crcd8v4bhd0tx" path="res://objects/train/organ/pipe/blast15.png" id="16_alqkv"]
+[ext_resource type="Texture2D" uid="uid://cidejfno608ix" path="res://objects/train/organ/pipe/blast16.png" id="17_0o5sy"]
+[ext_resource type="Texture2D" uid="uid://dp885v2soly4f" path="res://objects/train/organ/pipe/blast17.png" id="18_6kxqe"]
+[ext_resource type="Texture2D" uid="uid://dwbrjrv5xqqnw" path="res://objects/train/organ/pipe/blast0017.png" id="19_rpy53"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xtdrv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_24ao3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4db0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3p5pn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hb460")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8s6et")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ytljo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_n67vi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_uccwl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_c0i0n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_2rkdo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_egquc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_f5hnl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_48eg4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_55fd0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_alqkv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_0o5sy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_6kxqe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_rpy53")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[node name="Pipe" type="Node2D" groups=["pipes"]]
+script = ExtResource("1_w2ttf")
+audio_files = Array[AudioStream]([ExtResource("2_ln3gf"), ExtResource("3_cwutf"), ExtResource("4_qwfkp"), ExtResource("5_bpy0e"), ExtResource("6_uonrq"), ExtResource("7_53aak"), ExtResource("8_rftav")])
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, -60)
+default_color = Color(0.411765, 0.411765, 0.411765, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.509804, 0.576471, 0.654902, 1)
+sprite_frames = SubResource("SpriteFrames_xtdrv")
+frame = 17
+frame_progress = 1.0
+offset = Vector2(1, -302)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -12.0
+bus = &"SFX"

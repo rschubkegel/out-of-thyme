@@ -1,0 +1,394 @@
+[gd_scene load_steps=22 format=3 uid="uid://c7b4pmrxtedh0"]
+
+[ext_resource type="Script" path="res://levels/train/script.gd" id="1_pmq7b"]
+[ext_resource type="Script" path="res://objects/sun/script.gd" id="2_gc2rc"]
+[ext_resource type="Texture2D" uid="uid://ck4gnsunab2jl" path="res://objects/ground/sprite.png" id="3_abyyj"]
+[ext_resource type="Texture2D" uid="uid://byb21tdl4ubwe" path="res://objects/ground/cactus1.png" id="3_xveoi"]
+[ext_resource type="Texture2D" uid="uid://ch0ghy1iycs1u" path="res://objects/ground/grass1.png" id="4_5an8i"]
+[ext_resource type="Texture2D" uid="uid://cfy83nj7la35f" path="res://objects/ground/cactus2.png" id="4_rn5rd"]
+[ext_resource type="Texture2D" uid="uid://c76210hn5lomi" path="res://objects/ground/grass2.png" id="5_dv2jg"]
+[ext_resource type="PackedScene" uid="uid://601iq6q8aw0y" path="res://objects/conductor/Conductor.tscn" id="5_p4u5a"]
+[ext_resource type="PackedScene" uid="uid://b4c3sggqiljku" path="res://objects/train/engine/EngineCar.tscn" id="5_vikvb"]
+[ext_resource type="Texture2D" uid="uid://dykphhxoca0j7" path="res://objects/ground/grass3.png" id="6_dji0t"]
+[ext_resource type="PackedScene" uid="uid://cwh5jbbel862j" path="res://objects/train/thyme/ThymeCar.tscn" id="6_fcglq"]
+[ext_resource type="Script" path="res://objects/bird/spawner.gd" id="6_fs4xr"]
+[ext_resource type="PackedScene" uid="uid://dq8qd65xhrwft" path="res://objects/train/organ/OrganCar.tscn" id="7_bphpk"]
+[ext_resource type="Theme" uid="uid://dwdrlg1gqag5x" path="res://menus/Theme.tres" id="9_do4ov"]
+[ext_resource type="Texture2D" uid="uid://l5mga8led5g1" path="res://menus/arrows.png" id="15_b3blk"]
+
+[sub_resource type="Animation" id="Animation_b1ma8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Forground:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2292, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_71ord"]
+resource_name = "scroll"
+length = 3.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Forground:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3572, 0), Vector2(-5671, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-3294, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b2l2d"]
+_data = {
+"RESET": SubResource("Animation_b1ma8"),
+"scroll": SubResource("Animation_71ord")
+}
+
+[sub_resource type="Animation" id="Animation_v1ti3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.36271, 1.36271)]
+}
+
+[sub_resource type="Animation" id="Animation_owkea"]
+resource_name = "throb"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.185888),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.65, 0.65), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yrnjk"]
+_data = {
+"RESET": SubResource("Animation_v1ti3"),
+"throb": SubResource("Animation_owkea")
+}
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_pmq7b")
+
+[node name="Sky" type="ColorRect" parent="."]
+z_index = -100
+z_as_relative = false
+offset_right = 2563.0
+offset_bottom = 1442.0
+color = Color(0.996094, 0.878906, 0.65625, 1)
+
+[node name="Sun" type="Node2D" parent="."]
+z_index = -10
+position = Vector2(640, -125)
+script = ExtResource("2_gc2rc")
+sun_color = Color(1, 0.960784, 0.882353, 1)
+sky_end_color = Color(0.729412, 0.329412, 0.329412, 1)
+
+[node name="Ground" type="Node2D" parent="."]
+position = Vector2(2329, 1337)
+
+[node name="Background" type="Node2D" parent="Ground"]
+z_index = -9
+
+[node name="Cactus3" type="Sprite2D" parent="Ground/Background"]
+position = Vector2(-2006, -289)
+scale = Vector2(-1, 1)
+texture = ExtResource("3_xveoi")
+
+[node name="Cactus4" type="Sprite2D" parent="Ground/Background"]
+position = Vector2(-1406, -289)
+scale = Vector2(-1, 1)
+texture = ExtResource("4_rn5rd")
+
+[node name="Cactus5" type="Sprite2D" parent="Ground/Background"]
+position = Vector2(-778, -289)
+texture = ExtResource("3_xveoi")
+
+[node name="Cactus6" type="Sprite2D" parent="Ground/Background"]
+position = Vector2(-28, -289)
+texture = ExtResource("4_rn5rd")
+
+[node name="Cactus10" type="Sprite2D" parent="Ground/Background"]
+position = Vector2(1962, -289)
+texture = ExtResource("3_xveoi")
+
+[node name="Cactus11" type="Sprite2D" parent="Ground/Background"]
+position = Vector2(2712, -289)
+texture = ExtResource("4_rn5rd")
+
+[node name="Cactus7" type="Sprite2D" parent="Ground/Background"]
+position = Vector2(737, -289)
+scale = Vector2(-1, 1)
+texture = ExtResource("3_xveoi")
+
+[node name="Cactus13" type="Sprite2D" parent="Ground/Background"]
+position = Vector2(3475, -289)
+scale = Vector2(-1, 1)
+texture = ExtResource("3_xveoi")
+
+[node name="Cactus8" type="Sprite2D" parent="Ground/Background"]
+position = Vector2(1337, -289)
+scale = Vector2(-1, 1)
+texture = ExtResource("4_rn5rd")
+
+[node name="Forground" type="Sprite2D" parent="Ground"]
+z_index = 1
+position = Vector2(2292, 0)
+texture = ExtResource("3_abyyj")
+
+[node name="Grass1" type="Sprite2D" parent="Ground/Forground"]
+z_index = 1
+position = Vector2(-4523, -233)
+texture = ExtResource("4_5an8i")
+
+[node name="Grass11" type="Sprite2D" parent="Ground/Forground"]
+z_index = 1
+position = Vector2(-5447, -233)
+texture = ExtResource("5_dv2jg")
+
+[node name="Grass2" type="Sprite2D" parent="Ground/Forground"]
+z_index = 1
+position = Vector2(-2979, -229)
+texture = ExtResource("5_dv2jg")
+
+[node name="Grass3" type="Sprite2D" parent="Ground/Forground"]
+z_index = 1
+position = Vector2(-1051, -225)
+texture = ExtResource("6_dji0t")
+
+[node name="Grass4" type="Sprite2D" parent="Ground/Forground"]
+z_index = 1
+position = Vector2(-147, -221)
+texture = ExtResource("5_dv2jg")
+
+[node name="Grass5" type="Sprite2D" parent="Ground/Forground"]
+z_index = 1
+position = Vector2(1406, -233)
+texture = ExtResource("4_5an8i")
+
+[node name="Grass6" type="Sprite2D" parent="Ground/Forground"]
+z_index = 1
+position = Vector2(1505, -232)
+texture = ExtResource("5_dv2jg")
+
+[node name="Grass7" type="Sprite2D" parent="Ground/Forground"]
+z_index = 1
+position = Vector2(3041, -230)
+texture = ExtResource("6_dji0t")
+
+[node name="Grass8" type="Sprite2D" parent="Ground/Forground"]
+z_index = 1
+position = Vector2(3280, -227)
+texture = ExtResource("5_dv2jg")
+
+[node name="Grass9" type="Sprite2D" parent="Ground/Forground"]
+z_index = 1
+position = Vector2(4124, -224)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("5_dv2jg")
+
+[node name="Grass10" type="Sprite2D" parent="Ground/Forground"]
+z_index = 1
+position = Vector2(4315, -229)
+texture = ExtResource("5_dv2jg")
+
+[node name="Rail" type="Line2D" parent="Ground"]
+position = Vector2(-2329, -191)
+points = PackedVector2Array(0, 0, 2560, 0)
+width = 40.0
+default_color = Color(0.443137, 0.376471, 0.376471, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ground" groups=["train_speed_animators"]]
+autoplay = "scroll"
+libraries = {
+"": SubResource("AnimationLibrary_b2l2d")
+}
+
+[node name="EngineCar" parent="." instance=ExtResource("5_vikvb")]
+position = Vector2(2078, 932)
+
+[node name="Line2D" type="Line2D" parent="EngineCar"]
+z_index = -1
+points = PackedVector2Array(-570, 134, -359, 135)
+width = 12.0
+default_color = Color(0.277344, 0.175781, 0.1875, 1)
+
+[node name="OrganCar" parent="." instance=ExtResource("7_bphpk")]
+position = Vector2(1248, 846)
+
+[node name="Line2D2" type="Line2D" parent="OrganCar"]
+z_index = -1
+position = Vector2(830, 90)
+points = PackedVector2Array(-1071, 128, -1295, 125)
+width = 12.0
+default_color = Color(0.277344, 0.175781, 0.1875, 1)
+
+[node name="ThymeCar" parent="." instance=ExtResource("6_fcglq")]
+position = Vector2(438, 913)
+
+[node name="Conductor" parent="." instance=ExtResource("5_p4u5a")]
+position = Vector2(1933, 974)
+organ_car = NodePath("../OrganCar")
+
+[node name="BirdSpawner" type="Node" parent="."]
+script = ExtResource("6_fs4xr")
+level = NodePath("..")
+
+[node name="StartingPositions" type="Node" parent="BirdSpawner"]
+
+[node name="Node2D1" type="Node2D" parent="BirdSpawner/StartingPositions"]
+position = Vector2(2618, 90)
+
+[node name="Node2D2" type="Node2D" parent="BirdSpawner/StartingPositions"]
+position = Vector2(2611, 131)
+
+[node name="Node2D3" type="Node2D" parent="BirdSpawner/StartingPositions"]
+position = Vector2(2616, 209)
+
+[node name="Node2D4" type="Node2D" parent="BirdSpawner/StartingPositions"]
+position = Vector2(2598, 279)
+
+[node name="Node2D5" type="Node2D" parent="BirdSpawner/StartingPositions"]
+position = Vector2(2623, 366)
+
+[node name="Node2D6" type="Node2D" parent="BirdSpawner/StartingPositions"]
+position = Vector2(2620, 441)
+
+[node name="Timer" type="Timer" parent="BirdSpawner"]
+
+[node name="TimeLabel" type="Label" parent="."]
+z_index = 100
+offset_left = 55.0
+offset_top = 1271.0
+offset_right = 628.0
+offset_bottom = 1351.0
+rotation = 0.0563654
+theme = ExtResource("9_do4ov")
+text = "Time remaining: 30 s"
+horizontal_alignment = 1
+
+[node name="DistanceLabel" type="Label" parent="."]
+z_index = 100
+offset_left = 1768.0
+offset_top = 1308.0
+offset_right = 2494.0
+offset_bottom = 1388.0
+rotation = -0.0847482
+theme = ExtResource("9_do4ov")
+text = "Distance remaining: 100 ft"
+horizontal_alignment = 1
+
+[node name="HurryLabel" type="Label" parent="."]
+visible = false
+z_index = 100
+offset_left = 1140.18
+offset_top = 102.525
+offset_right = 1413.18
+offset_bottom = 182.525
+rotation = -0.0573776
+pivot_offset = Vector2(129.158, 41.7455)
+theme = ExtResource("9_do4ov")
+theme_override_colors/font_color = Color(0.996094, 0.957031, 0.878906, 1)
+text = "Hurry up!!"
+horizontal_alignment = 1
+
+[node name="KeepGoingLabel" type="Label" parent="."]
+z_index = 100
+offset_left = 1757.0
+offset_top = 626.0
+offset_right = 2375.0
+offset_bottom = 706.0
+rotation = 0.0265354
+scale = Vector2(1.36271, 1.36271)
+pivot_offset = Vector2(289.695, 41.691)
+theme = ExtResource("9_do4ov")
+text = "Keep the train moving!"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="KeepGoingLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_yrnjk")
+}
+
+[node name="Timer" type="Timer" parent="KeepGoingLabel"]
+wait_time = 1.5
+one_shot = true
+
+[node name="ProtectLabel" type="Label" parent="."]
+z_index = 100
+offset_left = 152.0
+offset_top = 545.0
+offset_right = 660.0
+offset_bottom = 625.0
+rotation = -0.145176
+scale = Vector2(0.675785, 0.675785)
+pivot_offset = Vector2(289.695, 41.691)
+theme = ExtResource("9_do4ov")
+text = "Protect the thyme!"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="ProtectLabel"]
+position = Vector2(293.303, 142.879)
+rotation = -4.02947
+scale = Vector2(0.858141, 0.858141)
+texture = ExtResource("15_b3blk")
+hframes = 3
+frame = 1
+
+[connection signal="engine_entered" from="EngineCar" to="." method="on_engine_entered"]
+[connection signal="engine_exited" from="EngineCar" to="." method="on_engine_exited"]
+[connection signal="seat_entered" from="OrganCar" to="Conductor" method="set_available_organ_seat"]
+[connection signal="seat_exited" from="OrganCar" to="Conductor" method="remove_available_organ_seat"]
+[connection signal="fell_off_train" from="Conductor" to="." method="emit_lose"]
+[connection signal="timeout" from="BirdSpawner/Timer" to="BirdSpawner" method="spawn_bird"]
+[connection signal="timeout" from="KeepGoingLabel/Timer" to="." method="_on_timer_timeout"]
